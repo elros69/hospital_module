@@ -1,0 +1,100 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="hospital_module.lista_pacientes">
+      <field name="name">Lista Pacientes</field>
+      <field name="model">hospital_module.lista_pacientes</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombrePaciente"/>
+          <field name="sintomas"/>
+          <field name="diagnostico"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="abrir_lista_pacientes">
+      <field name="name">Gestion Hospital</field>
+      <field name="res_model">hospital_module.lista_pacientes</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- Vista Medicos -->
+
+    <record model = "ir.ui.view" id = "hospital_module.lista_medicos">
+      <field name = "name">Lista Medicos</field>
+      <field name = "model">hospital_module.lista_medicos</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="identidadMedico"/>
+          <field name="numeroMedico"/>
+          <field name="diagnosticos"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="abrir_lista_medicos">
+      <field name="name">Gestion de Medicos</field>
+      <field name="res_model">hospital_module.lista_medicos</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+<!-- Lista de diagnosticos -->
+
+<record model = "ir.ui.view" id = "hospital_module.lista_diagnosticos">
+  <field name = "name">Lista Diagnosticos</field>
+  <field name = "model">hospital_module.lista_diagnosticos</field>
+  <field name="arch" type="xml">
+    <tree>
+      <field name="paciente"/>
+      <field name="medico"/>
+      <field name="diagnostico"/>
+    </tree>
+  </field>
+</record>
+
+<record model="ir.actions.act_window" id="abrir_lista_diagnostico">
+  <field name="name">Gestion de Diagnosticos</field>
+  <field name="res_model">hospital_module.lista_diagnosticos</field>
+  <field name="view_mode">tree,form</field>
+</record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="hosspital_module.action_server">
+      <field name="name">HosspitalModule server</field>
+      <field name="model_id" ref="model_hosspital_module_hosspital_module"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="HospitalModule" id="hospital_module_menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Herramientas" id="hospital_module_menu_1" parent="hospital_module_menu_root"/>
+    
+
+    <!-- actions -->
+
+    <menuitem name="Lista Pacientes" id="hosspital_module_menu_1_list" parent="hospital_module_menu_1"
+              action="abrir_lista_pacientes"/>
+    <menuitem name = "Listado Medicos" id = "hosspital_module_menu_2_list" parent = "hospital_module_menu_1"
+              action = "abrir_lista_medicos"/>          
+    <menuitem name = "Listado Diagnostico" id = "hosspital_module_menu_3_list" parent = "hospital_module_menu_1"
+              action = "abrir_lista_diagnostico"/>            
+              
+
+  </data>
+</odoo>
